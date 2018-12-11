@@ -1,8 +1,11 @@
-<?php
+<?php foreach ($list as $item) : ?>
+  <h1><a href="<?php echo Yii::$app->urlManager->createUrl(['test/view', 'id' => $item['id'],]) ?>"> 
+          <?php echo $item['title']; ?></a></h1>
+  <p><?php echo $item['content']; ?></p>
+  <hr>
+  <?php
+endforeach;
+?>
 
+<h1> <a href="<?php echo Yii::$app->urlManager->createUrl(['news/novosti-count']); ?>"> Ссылка на страницу с количеством новостей</a></h1>
 
-foreach ($list as $item) : ?>
-<h1><?php echo $item['title']; ?></h1>
-<p><?php echo $item['content']; ?></p>
-<hr>
-<?php endforeach; ?>

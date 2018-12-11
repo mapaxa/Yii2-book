@@ -42,12 +42,26 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'news' => 'test/index',
+                'news/novosti-count' => 'test/count',
+                'news/<id:\d+>' => 'test/view',
             ],
         ],
         'stringHelper' => [
             'class' => 'frontend\components\StringHelper',
-                    
         ],
+//        'mailer' => [
+//            'class' => 'yii\swiftmailer\Mailer',
+//            'useFileTransport' => false,
+//            'transport' => [
+//                'class' => 'Swift_SmtpTransport',
+//                'host' => 'smtp.gmail.com',
+//                'username' => 'mapaxa88@gmail.com',
+//                'password' => 'Rjgfqujhjl2015',
+//                'port' => '587',
+//                'encryption' => 'tls',
+//            ],
+//        ],
     ],
     'params' => $params,
 ];
