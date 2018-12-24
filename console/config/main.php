@@ -30,6 +30,13 @@ return [
                 ],
             ],
         ],
+        'stringHelper' => [
+            'class' => 'common\components\StringHelper',
+        ],
+        
+//        'timerx' => [
+//            'class' => 'yii\console\controllers\TimerxController',
+//        ],
         
     ],
     'params' => $params,

@@ -3,6 +3,10 @@
 namespace console\controllers;
 
 use Yii;
+
+use console\models\News;
+use console\models\Subscriber;
+use console\models\Sender;
 /**
  * Description of Mailer
  *
@@ -12,15 +16,14 @@ class MailerController extends \yii\console\Controller {
   
   public function actionSend()
   {
-    $result = Yii::$app->mailer->compose()
-      ->setFrom('mapaxa88@gmail.com')
-      ->setTo('mapaxa88@gmail.com')
-      ->setSubject('Тема сообщения')
-      ->setTextBody('Текст сообщения')
-      ->setHtmlBody('<b>Текст в формате HTML</b>')
-      ->send();
+    $newsList = News::getList();
+    $subscribers = Subscriber::getList();
+    $send = Sender::run($subscribers, $newsList);
     
-var_dump($result); die;
+    if($send){
+      News::newsSetStatusSent($newsList);
+    
+    }
   }
   
 }
