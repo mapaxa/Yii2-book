@@ -53,6 +53,7 @@ class TestController extends Controller {
             ->setTextBody('Текст сообщения')
             ->setHtmlBody('<b>Текст в формате HTML</b>')
             ->send();
+    var_dump($result);
   }
 
 }
