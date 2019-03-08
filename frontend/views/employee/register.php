@@ -1,13 +1,13 @@
-<?php 
+<?php
+/* var $model frontend\models\Employee */
 
-/*var $model frontend\models\Employee*/
-if(Yii::$app->session->hasFlash('success')) {
-//  echo '<pre>';
-//  echo 'xxxx';
-//  echo '<pre>'; 
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
+if (Yii::$app->session->hasFlash('success')) {
   echo Yii::$app->session->getFlash('success');
 }
-if($model->hasErrors()) {
+if ($model->hasErrors()) {
   echo '<pre>';
   print_r($model->getErrors());
   echo '</pre>';
@@ -16,7 +16,7 @@ if($model->hasErrors()) {
 
 <h1>welcome to our company</h1>
 
-<form method="post">
+<!--<form method="post">
     <p>First Name</p>
     <input value="sdsfsds" name="firstName" type="text" />
     <br>
@@ -48,8 +48,21 @@ if($model->hasErrors()) {
     </select>
     <br>
     <label for="identification_number">идентификационный номер</label>
-    <input value="<?php echo rand(1111111111, 9999999999);?>" type="text" name="identification_number" />
+    <input value="<?php // echo rand(1111111111, 9999999999);  ?>" type="text" name="identification_number" />
     <br>
     <br>
     <input type="submit">
-</form>
+</form>-->
+
+<?php $form = ActiveForm::begin(); ?>
+
+<?php echo $form->field($model, 'firstName'); ?>
+<?php echo $form->field($model, 'lastName'); ?>
+<?php echo $form->field($model, 'middleName'); ?>
+<?php echo $form->field($model, 'email'); ?>
+<?php echo $form->field($model, 'start_date')->hint('YYYY-mm-dd'); ?>
+<?php echo $form->field($model, 'city')->dropDownList($model->getCitiesList()); ?>
+<?php echo $form->field($model, 'identification_number'); ?>
+<?php echo Html::submitButton('Отправить', ['class' => 'btn btn-primary']); ?>
+
+<?php ActiveForm::end(); ?>
