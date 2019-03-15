@@ -28,9 +28,11 @@ class Publisher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['date_registered'], 'safe'],
-//            [['identity_number'], 'integer'],
-//            [['name'], 'string', 'max' => 255],
+            [['name', 'identity_number'], 'required'],
+            [['date_registered'], 'safe'],
+            [['identity_number'], 'integer'],
+            [['name'], 'string', 'max' => 255],
+            
         ];
     }
 
