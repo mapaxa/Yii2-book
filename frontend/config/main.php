@@ -1,9 +1,7 @@
 <?php
+
 $params = array_merge(
-    require __DIR__ . '/../../common/config/params.php',
-    require __DIR__ . '/../../common/config/params-local.php',
-    require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
+        require __DIR__ . '/../../common/config/params.php', require __DIR__ . '/../../common/config/params-local.php', require __DIR__ . '/params.php', require __DIR__ . '/params-local.php'
 );
 
 return [
@@ -15,11 +13,12 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'enableCsrfValidation' => false,
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'frontend\models\User',
             'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
@@ -37,7 +36,6 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -48,20 +46,38 @@ return [
             ],
         ],
         'stringHelper' => [
-            'class' => 'frontend\components\StringHelper',
+            'class' => 'common\components\StringHelper',
         ],
-//        'mailer' => [
-//            'class' => 'yii\swiftmailer\Mailer',
-//            'useFileTransport' => false,
-//            'transport' => [
-//                'class' => 'Swift_SmtpTransport',
-//                'host' => 'smtp.gmail.com',
-//                'username' => 'mapaxa88@gmail.com',
-//                'password' => 'Rjgfqujhjl2015',
-//                'port' => '587',
-//                'encryption' => 'tls',
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'mapaxa88@gmail.com',
+                'password' => 'Rjgfqujhjl2015',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
+        ],
+//        'assetManager' => [
+//            'bundles' => [
+//                'yii\web\JqueryAsset' => [
+//                    'js' => []
+//                ],
+//                'yii\web\YiiAsset' => [
+//                    'js' => []
+//                ],
+//                'yii\bootstrap\BootstrapPluginAsset' => [
+//                    'js' => []
+//                ],
 //            ],
 //        ],
     ],
     'params' => $params,
+    'aliases' => [
+        '@files' => '/var/www/project/frontend/web/files',
+        '@photos' => '@files/photos',
+        '@images' => '/files/photos',
+    ]
 ];
